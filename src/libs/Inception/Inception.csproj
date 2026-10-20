@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Nuget">
+    <PackageId>tryAGI.Inception</PackageId>
+    <Description>C# SDK for Inception Mercury chat, typed decisions, code autocomplete, and code editing.</Description>
+    <PackageTags>csharp;dotnet;sdk;ai;autosdk;openapi;inception;llm;chat-completion</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.AI.Abstractions" Version="10.11.0" />
+  </ItemGroup>
+</Project>
