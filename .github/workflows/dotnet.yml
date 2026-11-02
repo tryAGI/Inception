@@ -21,7 +21,6 @@ jobs:
       enable-caching: false
       additional-test-arguments: '--logger GitHubActions'
     secrets:
-      nuget-key: ${{ secrets.NUGET_KEY }}
       api-key: ${{ secrets.INCEPTION_API_KEY }}
 
   native-aot:
@@ -36,3 +35,16 @@ jobs:
         run: dotnet publish src/tests/NativeAotSmoke/NativeAotSmoke.csproj -c Release -r linux-x64 --self-contained true -o /tmp/inception-native-aot
       - name: Run native protocol fixtures
         run: /tmp/inception-native-aot/NativeAotSmoke
+
+  nuget-trusted-publish:
+    name: NuGet trusted publishing
+    needs: publish
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: tryAGI/workflows/.github/actions/nuget-publish@main
+        with:
+          user: havendv
